@@ -1,0 +1,56 @@
+{
+  "paragraphs": [
+    {
+      "user": "anonymous",
+      "config": {
+        "colWidth": 12,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1487649583561_821164572",
+      "id": "20170220-225943_1389094216",
+      "dateCreated": "2017-02-20T22:59:43-0500",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:214"
+    }
+  ],
+  "name": "emptynote",
+  "id": "2C9ME7B2F",
+  "angularObjects": {
+    "2C8GZ37HU:shared_process": [],
+    "2C8DZZ2YK:shared_process": [],
+    "2CAV34R4V:shared_process": [],
+    "2C9HXUNME:shared_process": [],
+    "2C874FKPD:shared_process": [],
+    "2C9NN6RMG:shared_process": [],
+    "2CBMBCZ47:shared_process": [],
+    "2C9VHYZVG:shared_process": [],
+    "2CA7HTMXE:shared_process": [],
+    "2CBSGG3ZV:shared_process": [],
+    "2C8D4CV5Y:shared_process": [],
+    "2CAQSC5GT:shared_process": [],
+    "2C9BYDQNZ:shared_process": [],
+    "2CA2TXKHY:shared_process": [],
+    "2CBCJPXPC:shared_process": [],
+    "2CBM8FY12:shared_process": [],
+    "2C91QFY4Q:shared_process": [],
+    "2CABA9KWR:shared_process": [],
+    "2C9ZKR25Z:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

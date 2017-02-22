@@ -16,11 +16,29 @@ def test_zeppelin_invalid_notebook():
 
 def test_zeppelin_invalid_json():
     with pytest.raises(ValueError):
-        z = Zeppelin('invalid.json')
+        z = Zeppelin('test/invalid.json')
 
 
 def test_zeppelin_created_valid_json():
-    z = Zeppelin('valid.json')
+    z = Zeppelin('test/valid.json')
     assert(isinstance(z, Zeppelin))
 
-def test_zeppelin_no_paragraphs
+
+def test_zeppelin_no_category():
+    z = Zeppelin('test/emptynote.json')
+    assert('', z.get_category())
+
+
+def test_zeppelin_with_category():
+    z = Zeppelin('test/NoteWithData.json')
+    assert('foo|bar|baz', z.get_category())
+
+
+def test_zeppelin_no_team():
+    z = Zeppelin('test/emptynote.json')
+    assert('', z.get_team())
+
+
+def test_zeppelin_with_team():
+    z = Zeppelin('test/NoteWithData.json')
+    assert('team1', z.get_team())
