@@ -1,0 +1,10 @@
+#header {
+    height: 100px;
+    background-color: #66ccff;
+    width: 1000px;
+    text-align: center;
+    font-size: 25px;
+    font-family: serif, Times;
+    background-image: url('/images/Peter_Grant.jpeg');
+    background-repeat: no-repeat;
+}

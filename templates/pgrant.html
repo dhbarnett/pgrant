@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pgrant Zeppelin Notebook Manager</title>
+    <link rel="stylesheet" type="text/css" href="/css/pgrant" />
+</head>
+<body>
+<div id="header">Pgrant Zeppelin Notebook manager</div>
+{% if not path %}
+Category: Undefined
+{% else %}
+Category:
+{% for category_idx in range(path|length) %}
+{% if category_idx > 0 %}
+{% set initial='/' %}
+{% else %}
+{% set initial='' %}
+{% endif %}
+{% if category_idx < (path|length - 1) %}
+{% set final=' > ' %}
+{% else %}
+{% set final='' %}
+{% endif %}
+<a href="{{ initial }}{{ path[:category_idx]|join('/')}}/{{ path[category_idx] }}/">{{ path[category_idx] }}</a>{{ final }}
+{% endfor %}
+{% endif %}
+</body>
+</html>

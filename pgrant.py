@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from config import Config
+from flask import Flask, Response, send_file, render_template
 from glob import glob
 from zeppelin import Zeppelin
 
@@ -14,8 +15,6 @@ class Category(object):
         self.notebooks = []
 
 
-
-
 class Pgrant():
     def __init__(self, config=None):
         self.config = config
@@ -27,8 +26,6 @@ class Pgrant():
 
     def add_notebook(self, notebook):
         current = self.notebooks
-        foo = notebook.get_category()
-        foo == foo
         for category in notebook.get_category().split('|'):
             if category == '':
                 break
@@ -47,3 +44,28 @@ class Pgrant():
 
         for notebook in notebook_files:
             self.add_notebook(Zeppelin(notebook))
+
+
+app = Flask(__name__)
+
+
+@app.route('/images/<string:img_file>')
+def return_img(img_file):
+    return send_file('images/{}'.format(img_file), mimetype='img/jpeg')
+
+
+@app.route('/css/<string:css_file>')
+def return_css(css_file):
+    return Response(open('templates/{}.css'.format(css_file), 'r').read(), mimetype='text/css')
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def run_pgrant(path):
+    pg = Pgrant()
+    pg.process_notebooks()
+    if path == '':
+        template_path = None
+    else:
+        template_path = path.rstrip('/').split('/')
+    return render_template('pgrant.html', path=template_path)
