@@ -8,3 +8,8 @@
     background-image: url('/images/Peter_Grant.jpeg');
     background-repeat: no-repeat;
 }
+
+.notebook {
+    outline: #000000 solid thin;
+    background-color: #AAAAAA;
+}

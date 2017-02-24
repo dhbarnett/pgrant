@@ -7,23 +7,40 @@
 </head>
 <body>
 <div id="header">Pgrant Zeppelin Notebook manager</div>
-{% if not path %}
-Category: Undefined
-{% else %}
+{% if category_path %}
 Category:
-{% for category_idx in range(path|length) %}
+{% for category_idx in range(category_path|length) %}
 {% if category_idx > 0 %}
 {% set initial='/' %}
 {% else %}
 {% set initial='' %}
 {% endif %}
-{% if category_idx < (path|length - 1) %}
+{% if category_idx < (category_path|length - 1) %}
 {% set final=' > ' %}
 {% else %}
 {% set final='' %}
 {% endif %}
-<a href="{{ initial }}{{ path[:category_idx]|join('/')}}/{{ path[category_idx] }}/">{{ path[category_idx] }}</a>{{ final }}
+<a href="{{ initial }}{{ category_path[:category_idx]|join('/')}}/{{ category_path[category_idx] }}/">{{ category_path[category_idx] }}</a>{{ final }}
+{% endfor %}
+<br>
+{% endif %}
+
+Subcategories:
+{% if subcategories %}
+{% for category in subcategories.keys() %}
+<a href="/{{ category_path|join('/')}}/{{ category }}/">{{ category }}</a> :
 {% endfor %}
 {% endif %}
+
+{% for key in notebook_data.keys() %}
+
+<hr>
+<a href="/{{ key }}">{{ key }}</a>
+<div class="notebook">
+  {{ notebook_data[key]|safe }}
+</div>
+{% endfor %}
+
 </body>
+
 </html>

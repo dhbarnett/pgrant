@@ -40,3 +40,9 @@ class Zeppelin(object):
             else:
                 return ''
 
+    def get_text(self):
+        if 'text' not in self.notebook_data['paragraphs'][0]:
+            return ''
+        else:
+            return self.notebook_data['paragraphs'][0]
+

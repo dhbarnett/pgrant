@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import json
+
 from config import Config
 from flask import Flask, Response, send_file, render_template
 from glob import glob
@@ -27,6 +29,7 @@ class Pgrant():
     def add_notebook(self, notebook):
         current = self.notebooks
         for category in notebook.get_category().split('|'):
+            category = category.strip()
             if category == '':
                 break
             if category in current.subcategories:
@@ -59,13 +62,34 @@ def return_css(css_file):
     return Response(open('templates/{}.css'.format(css_file), 'r').read(), mimetype='text/css')
 
 
+@app.route('/favicon.ico')
+def dummy():
+    return Response('')
+
+
+@app.route('/notebooks/<string:notebook>')
+def serve_notebook(notebook):
+    return send_file('notebooks/{}'.format(notebook))
+
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def run_pgrant(path):
     pg = Pgrant()
     pg.process_notebooks()
     if path == '':
-        template_path = None
+        category_path = []
     else:
-        template_path = path.rstrip('/').split('/')
-    return render_template('pgrant.html', path=template_path)
+        category_path = path.rstrip('/').split('/')
+    subcategories = None
+    current = pg.notebooks
+    for path in category_path:
+        current = current.subcategories.get(path, {})
+    if current:
+        subcategories = current.subcategories
+        notebook_data = dict([(x.notebook_name, x.get_text().get('results', {}).get('msg', {})[0].get('data', '')) for x in current.notebooks])
+    else:
+        notebook_data = {}
+
+    return render_template('pgrant.html', category_path=category_path, subcategories=subcategories,
+                           notebook_data=notebook_data)
