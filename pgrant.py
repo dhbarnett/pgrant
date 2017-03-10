@@ -87,7 +87,7 @@ def run_pgrant(path):
         current = current.subcategories.get(path, {})
     if current:
         subcategories = current.subcategories
-        notebook_data = dict([(x.notebook_name, x.get_text().get('results', {}).get('msg', {})[0].get('data', '')) for x in current.notebooks])
+        notebook_data = dict([(x.notebook_name, x.get_text().get('result', {}).get('msg', {})) for x in current.notebooks])
     else:
         notebook_data = {}
 

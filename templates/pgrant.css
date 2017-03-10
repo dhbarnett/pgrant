@@ -3,6 +3,7 @@
     background-color: #66ccff;
     width: 1000px;
     text-align: center;
+    margin-right: 20%;
     font-size: 25px;
     font-family: serif, Times;
     background-image: url('/images/Peter_Grant.jpeg');
@@ -11,5 +12,5 @@
 
 .notebook {
     outline: #000000 solid thin;
-    background-color: #AAAAAA;
+    background-color: #CCCCCC;
 }

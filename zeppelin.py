@@ -21,8 +21,9 @@ class Zeppelin(object):
         if first_paragraph_data[0].strip() != '%md':
             return ''
         else:
-            categories = filter(lambda x: x.lstrip(' #').lower().startswith('category:'), first_paragraph_data)
+            categories = [x for x in filter(lambda x: x.lstrip(' #').lower().startswith('category:'), first_paragraph_data)]
             if categories:
+                print("categories: {}".format(categories))
                 return categories[0].split(':', 1)[1]
             else:
                 return ''
@@ -45,4 +46,3 @@ class Zeppelin(object):
             return ''
         else:
             return self.notebook_data['paragraphs'][0]
-

@@ -7,8 +7,7 @@
 </head>
 <body>
 <div id="header">Pgrant Zeppelin Notebook manager</div>
-{% if category_path %}
-Category:
+Category path: <a href="/">Root</a> >
 {% for category_idx in range(category_path|length) %}
 {% if category_idx > 0 %}
 {% set initial='/' %}
@@ -23,12 +22,16 @@ Category:
 <a href="{{ initial }}{{ category_path[:category_idx]|join('/')}}/{{ category_path[category_idx] }}/">{{ category_path[category_idx] }}</a>{{ final }}
 {% endfor %}
 <br>
-{% endif %}
 
 Subcategories:
 {% if subcategories %}
 {% for category in subcategories.keys() %}
-<a href="/{{ category_path|join('/')}}/{{ category }}/">{{ category }}</a> :
+    {% if category_path|length > 0 %}
+        {% set initial='/' %}
+    {% else %}
+        {% set initial='' %}
+    {% endif %}
+<a href="{{ initial }}{{ category_path|join('/')}}/{{ category }}/">{{ category }}</a> :
 {% endfor %}
 {% endif %}
 
